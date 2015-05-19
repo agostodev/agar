@@ -1,0 +1,33 @@
+application: restle
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'settings'
+
+builtins:
+- remote_api: on
+
+libraries:
+- name: django
+  version: "1.3"
+- name: webapp2
+  version: "2.5.1"
+
+handlers:
+- url: /
+  script: main.application
+- url: /api/.*
+  script: api.application
+
+skip_files:
+- ^local/.*
+- ^tests/.*
+- ^.hg/.*
+- ^.idea/.*
+- ^.*~
+- ^.*\.py[co]
+- ^.*\.po
+- ^.*\.pot
